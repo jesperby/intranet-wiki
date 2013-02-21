@@ -1,0 +1,61 @@
+body  {
+  margin-top: 3em !important;
+}
+header a:hover {
+  text-decoration: none;
+}
+
+#mw-head, .portal, .editsection, #footer {
+  font-family: 'OpenSans', 'Verdana', 'DejaVu Sans', 'Bitstream Vera Sans', sans-serif;
+}
+#content {
+  margin-top: 1em;
+}
+
+div#mw-head {
+  top: 3em;
+}
+
+#mw-page-base a,
+#mw-head-base a,
+#content a,
+#mw-head a,
+#mw-panel a,
+#footer a {
+  color: #0060b0 !important;
+}
+
+#editform textarea {
+  width: 100%;
+}
+
+#editpage-copywarn {
+  display: none;
+}
+
+.editButtons {
+  font-size: 0.8125em;
+}
+
+a#mw-editform-cancel {
+  color: black !important;
+}
+
+div#simpleSearch button#searchButton {
+  padding: 0;
+}
+
+#toc, .toc, .mw-warning {
+  font-size: 1em;
+}
+
+.editsection {
+  font-size: 0.6em !important;
+}
+
+#footer-info-copyright,
+#footer-info-viewcount,
+#footer-places,
+#n-randompage {
+  display: none;
+}
