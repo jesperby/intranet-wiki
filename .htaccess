@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /ws/wiki/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /ws/wiki/index.php [L]
+
