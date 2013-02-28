@@ -155,9 +155,6 @@ class MalmoTemplate extends BaseTemplate {
 			<!-- bodyContent -->
 			<div id="bodyContent">
 				<?php if ( $this->data['isarticle'] ): ?>
-				<!-- tagline -->
-				<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
-				<!-- /tagline -->
 				<?php endif; ?>
 				<!-- subtitle -->
 				<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
@@ -222,7 +219,7 @@ class MalmoTemplate extends BaseTemplate {
 		<!-- /header -->
 		<!-- panel -->
 			<div id="mw-panel" class="noprint">
-				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
+				<?php # $this->renderPortals( $this->data['sidebar'] ); ?>
 			</div>
 		<!-- /panel -->
 		<!-- footer -->
@@ -238,6 +235,18 @@ class MalmoTemplate extends BaseTemplate {
 		</div>
 		<!-- /footer -->
 		<?php $this->printTrail(); ?>
+
+    <footer class="bigfoot">
+      <nav class="">
+        <ul>
+          <li><a href="#">Startsida</a></li>
+          <li><a href="#">Startsida</a></li>
+          <li><a href="#">Startsida</a></li>
+          <li><a href="#">Startsida</a></li>
+        </ul>
+      </nav>
+    </footer>
+
     <script src="//webapps06.malmo.se/assets-3.0/malmo.js"></script>
 	</body>
 </html>
