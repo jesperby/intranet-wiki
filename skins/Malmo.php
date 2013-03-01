@@ -38,9 +38,13 @@ class SkinMalmo extends SkinTemplate {
        <!--[if lte IE 9]><link href="' . ASSET_HOST . '/legacy/ie9.css" rel="stylesheet" type="text/css"/><![endif]-->
        <!--[if lte IE 7]><link href="' . ASSET_HOST . '/legacy/ie7.css" rel="stylesheet" type="text/css"/><![endif]-->
        <link href="' . $wgLocalStylePath . '/malmo/screen.css" rel="stylesheet" type="text/css"/>
-       <link href="' . $wgLocalStylePath . '/malmo/malmo.css" rel="stylesheet" type="text/css"/>
-       <link href="' . $wgLocalStylePath . '/malmo/commonContent.css" rel="stylesheet" type="text/css"/>'
+       <link href="' . $wgLocalStylePath . '/malmo/malmo.css" rel="stylesheet" type="text/css"/>'
     );
+    $out->addStyle('malmo/commonElements.css', 'screen');
+    $out->addStyle('malmo/commonContent.css', 'screen');
+    $out->addStyle('malmo/commonInterface.css', 'screen');
+
+
 		$out->addModuleScripts( 'skins.malmo' );
 	}
 
@@ -207,6 +211,9 @@ class MalmoTemplate extends BaseTemplate {
 		</div>
 		<!-- /content -->
 		<!-- header -->
+
+    <?php # TODO: $nav links in top ?>
+
 		<div id="mw-head" class="noprint">
 			<?php $this->renderNavigation( 'PERSONAL' ); ?>
 			<div id="left-navigation">
@@ -217,11 +224,6 @@ class MalmoTemplate extends BaseTemplate {
 			</div>
 		</div>
 		<!-- /header -->
-		<!-- panel -->
-			<div id="mw-panel" class="noprint">
-				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
-			</div>
-		<!-- /panel -->
 		<!-- footer -->
 		<div id="footer"<?php $this->html( 'userlangattributes' ) ?>>
 			<?php foreach( $this->getFooterLinks() as $category => $links ): ?>
@@ -239,9 +241,18 @@ class MalmoTemplate extends BaseTemplate {
     <footer class="bigfoot">
       <nav>
         <ul class="list-1">
-          <li><a href="#">Huvudsida</a></li>
+          <li><a href="<?php echo $this->data['nav_urls']['mainpage']['href'] ?>">Huvudsida</a></li>
+          <li><a href="<?php echo $this->data['nav_urls']['recentchangeslinked']['href'] ?>">Senaste ändringar</a></li>
+          <li><a href="<?php echo $this->navigationHref('n-help'); ?>">Hjälp</a></li>
         </ul>
+
         <ul class="list-2">
+          <li><a href="<?php echo $this->data['nav_urls']['upload']['href'] ?>">Ladda upp fil</a></li>
+          <li><a href="<?php echo $this->data['nav_urls']['whatlinkshere']['href'] ?>">Vad länkar hit</a></li>
+          <li><a href="<?php echo $this->data['nav_urls']['specialpages']['href'] ?>">Specialsidor</a></li>
+        </ul>
+
+        <ul class="list-3">
           <?php foreach( $this->getPersonalTools() as $key => $item ) { ?>
               <?php echo $this->makeListItem( $key, $item ); ?>
           <?php } ?>
@@ -254,6 +265,18 @@ class MalmoTemplate extends BaseTemplate {
 </html>
 <?php
 	}
+
+
+
+
+  function navigationHref($id) {
+    foreach ($this->data['sidebar']['navigation'] as $item) {
+      if ($item['id'] == $id) {
+        return $item['href'];
+      }
+    }
+    return false;
+  }
 
 	/**
 	 * Render a series of portals
