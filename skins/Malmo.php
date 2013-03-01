@@ -1,19 +1,9 @@
 <?php
-/**
- * Malmo skin for intranet wiki. Based on the Wikipedia Vector skin.
- *
- * @file
- * @ingroup Skins
- */
+// Malmo skin for intranet wiki. Based on the Wikipedia Vector skin.
 
-if( !defined( 'MEDIAWIKI' ) ) {
-	die( -1 );
-}
+if (!defined('MEDIAWIKI')) die( -1 );
 
-/**
- * SkinTemplate class for Malmo skin
- * @ingroup Skins
- */
+ // SkinTemplate class for Malmo skin
 class SkinMalmo extends SkinTemplate {
 
 	protected static $bodyClasses = array( 'vector-animateLayout' );
@@ -43,7 +33,6 @@ class SkinMalmo extends SkinTemplate {
     $out->addStyle('malmo/commonElements.css', 'screen');
     $out->addStyle('malmo/commonContent.css', 'screen');
     $out->addStyle('malmo/commonInterface.css', 'screen');
-
 
 		$out->addModuleScripts( 'skins.malmo' );
 	}
@@ -173,15 +162,6 @@ class MalmoTemplate extends BaseTemplate {
 				<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
 				<!-- /newtalk -->
 				<?php endif; ?>
-				<?php if ( $this->data['showjumplinks'] ): ?>
-				<!-- jumpto -->
-				<div id="jump-to-nav" class="mw-jump">
-					<?php $this->msg( 'jumpto' ) ?>
-					<a href="#mw-head"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?>
-					<a href="#p-search"><?php $this->msg( 'jumptosearch' ) ?></a>
-				</div>
-				<!-- /jumpto -->
-				<?php endif; ?>
 				<!-- bodycontent -->
 				<?php $this->html( 'bodycontent' ) ?>
 				<!-- /bodycontent -->
@@ -231,6 +211,7 @@ class MalmoTemplate extends BaseTemplate {
 					<?php foreach( $links as $link ): ?>
 						<li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
 					<?php endforeach; ?>
+          <li><a href="<?php echo $this->data['nav_urls']['whatlinkshere']['href'] ?>">Länkar till sidan</a></li>
 				</ul>
 			<?php endforeach; ?>
 			<div style="clear:both"></div>
@@ -242,21 +223,21 @@ class MalmoTemplate extends BaseTemplate {
       <nav>
         <ul class="list-1">
           <li><a href="<?php echo $this->data['nav_urls']['mainpage']['href'] ?>">Huvudsida</a></li>
+          <li><a href="<?php echo $this->data['nav_urls']['upload']['href'] ?>">Ladda upp fil</a></li>
+          <li><a href="<?php echo $this->data['nav_urls']['specialpages']['href'] ?>">Specialsidor</a></li>
           <li><a href="<?php echo $this->data['nav_urls']['recentchangeslinked']['href'] ?>">Senaste ändringar</a></li>
-          <li><a href="<?php echo $this->navigationHref('n-help'); ?>">Hjälp</a></li>
         </ul>
 
         <ul class="list-2">
-          <li><a href="<?php echo $this->data['nav_urls']['upload']['href'] ?>">Ladda upp fil</a></li>
-          <li><a href="<?php echo $this->data['nav_urls']['whatlinkshere']['href'] ?>">Vad länkar hit</a></li>
-          <li><a href="<?php echo $this->data['nav_urls']['specialpages']['href'] ?>">Specialsidor</a></li>
+          <?php foreach( $this->getPersonalTools() as $key => $item ) { ?>
+            <?php echo $this->makeListItem( $key, $item ); ?>
+          <?php } ?>
         </ul>
 
         <ul class="list-3">
-          <?php foreach( $this->getPersonalTools() as $key => $item ) { ?>
-              <?php echo $this->makeListItem( $key, $item ); ?>
-          <?php } ?>
+          <li><a href="<?php echo $this->navigationHref('n-help'); ?>">Hjälp</a></li>
         </ul>
+
       </nav>
     </footer>
 
@@ -266,9 +247,7 @@ class MalmoTemplate extends BaseTemplate {
 <?php
 	}
 
-
-
-
+  // Get a sidebar navigation link by id
   function navigationHref($id) {
     foreach ($this->data['sidebar']['navigation'] as $item) {
       if ($item['id'] == $id) {
@@ -277,85 +256,6 @@ class MalmoTemplate extends BaseTemplate {
     }
     return false;
   }
-
-	/**
-	 * Render a series of portals
-	 *
-	 * @param $portals array
-	 */
-	protected function renderPortals( $portals ) {
-		// Force the rendering of the following portals
-		if ( !isset( $portals['SEARCH'] ) ) {
-			$portals['SEARCH'] = true;
-		}
-		if ( !isset( $portals['TOOLBOX'] ) ) {
-			$portals['TOOLBOX'] = true;
-		}
-		if ( !isset( $portals['LANGUAGES'] ) ) {
-			$portals['LANGUAGES'] = true;
-		}
-		// Render portals
-		foreach ( $portals as $name => $content ) {
-			if ( $content === false )
-				continue;
-
-			echo "\n<!-- {$name} -->\n";
-			switch( $name ) {
-				case 'SEARCH':
-					break;
-				case 'TOOLBOX':
-					$this->renderPortal( 'tb', $this->getToolbox(), 'toolbox', 'SkinTemplateToolboxEnd' );
-					break;
-				case 'LANGUAGES':
-					if ( $this->data['language_urls'] ) {
-						$this->renderPortal( 'lang', $this->data['language_urls'], 'otherlanguages' );
-					}
-					break;
-				default:
-					$this->renderPortal( $name, $content );
-				break;
-			}
-			echo "\n<!-- /{$name} -->\n";
-		}
-	}
-
-	/**
-	 * @param $name string
-	 * @param $content array
-	 * @param $msg null|string
-	 * @param $hook null|string|array
-	 */
-	protected function renderPortal( $name, $content, $msg = null, $hook = null ) {
-		if ( $msg === null ) {
-			$msg = $name;
-		}
-		?>
-<div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo Linker::tooltip( 'p-' . $name ) ?>>
-	<h5<?php $this->html( 'userlangattributes' ) ?>><?php $msgObj = wfMessage( $msg ); echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $msg ); ?></h5>
-	<div class="body">
-<?php
-		if ( is_array( $content ) ): ?>
-		<ul>
-<?php
-			foreach( $content as $key => $val ): ?>
-			<?php echo $this->makeListItem( $key, $val ); ?>
-
-<?php
-			endforeach;
-			if ( $hook !== null ) {
-				wfRunHooks( $hook, array( &$this, true ) );
-			}
-			?>
-		</ul>
-<?php
-		else: ?>
-		<?php echo $content; /* Allow raw HTML block to be defined by extensions */ ?>
-<?php
-		endif; ?>
-	</div>
-</div>
-<?php
-	}
 
 	/**
 	 * Render one or more navigations elements by name, automatically reveresed
@@ -452,7 +352,7 @@ class MalmoTemplate extends BaseTemplate {
 			<?php if ( $this->data['rtl'] ): ?>
 			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-rtl.png' ), 'width' => '12', 'height' => '13' ) ); ?>
 			<?php endif; ?>
-			<?php echo $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'text', "placeholder" => "Sök" ) ); ?>
+			<?php echo $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'text', "placeholder" => "Sök wikisida" ) ); ?>
 			<?php if ( !$this->data['rtl'] ): ?>
 			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-ltr.png' ), 'width' => '12', 'height' => '13' ) ); ?>
 			<?php endif; ?>
