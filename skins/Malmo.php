@@ -219,7 +219,7 @@ class MalmoTemplate extends BaseTemplate {
 		<!-- /header -->
 		<!-- panel -->
 			<div id="mw-panel" class="noprint">
-				<?php # $this->renderPortals( $this->data['sidebar'] ); ?>
+				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
 			</div>
 		<!-- /panel -->
 		<!-- footer -->
@@ -237,17 +237,19 @@ class MalmoTemplate extends BaseTemplate {
 		<?php $this->printTrail(); ?>
 
     <footer class="bigfoot">
-      <nav class="">
-        <ul>
-          <li><a href="#">Startsida</a></li>
-          <li><a href="#">Startsida</a></li>
-          <li><a href="#">Startsida</a></li>
-          <li><a href="#">Startsida</a></li>
+      <nav>
+        <ul class="list-1">
+          <li><a href="#">Huvudsida</a></li>
+        </ul>
+        <ul class="list-2">
+          <?php foreach( $this->getPersonalTools() as $key => $item ) { ?>
+              <?php echo $this->makeListItem( $key, $item ); ?>
+          <?php } ?>
         </ul>
       </nav>
     </footer>
 
-    <script src="//webapps06.malmo.se/assets-3.0/malmo.js"></script>
+    <script src="<?php echo ASSET_HOST ?>/malmo.js"></script>
 	</body>
 </html>
 <?php
@@ -416,21 +418,8 @@ class MalmoTemplate extends BaseTemplate {
 	</div>
 </div>
 <?php
-				break;
-				case 'PERSONAL':
-?>
-<div id="p-personal" class="<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
-	<h5><?php $this->msg( 'personaltools' ) ?></h5>
-	<ul<?php $this->html( 'userlangattributes' ) ?>>
-<?php			foreach( $this->getPersonalTools() as $key => $item ) { ?>
-		<?php echo $this->makeListItem( $key, $item ); ?>
-
-<?php			} ?>
-	</ul>
-</div>
-<?php
-				break;
-				case 'SEARCH':
+  break;
+  case 'SEARCH':
 ?>
 <div id="p-search">
 	<h5<?php $this->html( 'userlangattributes' ) ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
