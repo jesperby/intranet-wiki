@@ -63,23 +63,17 @@ div#mw-panel div.portal div.body ul li a {
 div#mw-panel div.portal div.body ul li a:visited {
   color: #0b0080;
 }
-/* Footer */
-div#footer {
-  margin-top: 0;
-}
-div#footer ul {
+
+ul.page-info {
   list-style: none;
-  list-style-image: none;
-  list-style-type: none;
-  margin: 0;
+  margin: 2em 0 0;
   padding: 0;
 }
-div#footer ul li {
+.page-info li {
   margin: 0;
   padding: 0;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
-  color: #333;
   font-size: 0.8125em;
 }
 
@@ -339,7 +333,7 @@ footer.bigfoot nav {
 #mw-head li {
   font-size: .8125em;
   display: inline;
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
 #p-views, #p-search {

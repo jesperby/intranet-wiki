@@ -3,6 +3,6 @@
 
 if (!defined('MEDIAWIKI')) die( -1 );
 
-require_once('malmo/MalmoTemplate.php');
-require_once('malmo/SkinMalmo.php');
+require_once('malmo/template.php');
+require_once('malmo/skin.php');
 
