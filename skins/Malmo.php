@@ -131,8 +131,18 @@ class MalmoTemplate extends BaseTemplate {
 		// Output HTML Page
 		$this->html( 'headelement' );
 ?>
-		<div id="mw-page-base" class="noprint"></div>
+    <div class="service-title"><a href="<?php echo $this->data['nav_urls']['mainpage']['href'] ?>">Wiki</a></div>
+
 		<div id="mw-head-base" class="noprint"></div>
+
+    <!-- header -->
+    <div id="mw-head" class="noprint">
+      <div id="right-navigation">
+        <?php $this->renderNavigation( array( 'VIEWS', 'ACTIONS', 'SEARCH' ) ); ?>
+      </div>
+    </div>
+    <!-- /header -->
+
 		<!-- content -->
 		<div id="content" class="mw-body body-copy">
 			<a id="top"></a>
@@ -190,20 +200,6 @@ class MalmoTemplate extends BaseTemplate {
 			<!-- /bodyContent -->
 		</div>
 		<!-- /content -->
-		<!-- header -->
-
-    <?php # TODO: $nav links in top ?>
-
-		<div id="mw-head" class="noprint">
-			<?php $this->renderNavigation( 'PERSONAL' ); ?>
-			<div id="left-navigation">
-				<?php $this->renderNavigation( array( 'NAMESPACES', 'VARIANTS' ) ); ?>
-			</div>
-			<div id="right-navigation">
-				<?php $this->renderNavigation( array( 'VIEWS', 'ACTIONS', 'SEARCH' ) ); ?>
-			</div>
-		</div>
-		<!-- /header -->
 		<!-- footer -->
 		<div id="footer"<?php $this->html( 'userlangattributes' ) ?>>
 			<?php foreach( $this->getFooterLinks() as $category => $links ): ?>
@@ -324,6 +320,7 @@ class MalmoTemplate extends BaseTemplate {
 				}
 				?></a></span></li>
 		<?php endforeach; ?>
+    <li><span><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['talk']['href'] ) ?>" "><?php echo $this->data['content_navigation']['namespaces']['talk']['text'] ?></span></a></li>
 	</ul>
 </div>
 <?php

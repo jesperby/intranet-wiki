@@ -1,19 +1,10 @@
 /*
- * Any rules which should not be flipped automatically in right-to-left situations should be
- * prepended with @noflip in a comment block. Images that should be embedded as base64 data-URLs
- * should be prepended with @embed in a comment block.
- *
- * This style-sheet employs a few CSS trick to accomplish compatibility with a wide range of web
- * browsers. The most common trick is to use some styles in IE6 only. This is accomplished by using
- * a rule that makes things work in IE6, and then following it with a rule that begins with
- * "html > body" or use a child selector ">", which is ignored by IE6 because it does not support
- * the child selector. You can spot this by looking for the "OVERRIDDEN BY COMPLIANT BROWSERS" and
- * "IGNORED BY IE6" comments.
+ * Based on the Vector css
  */
 
 /* Framework */
-body {
-  margin: 2.6em 0 0 0;
+html body {
+  margin: 2.6em 0 0 0 !important
 }
 /* Content */
 div#content {
@@ -25,24 +16,13 @@ div#content {
 #mw-page-base {
   height: 5em;
   background-color: white;
-  /* @embed */
-  background-image: url(images/page-fade.png);
-  background-position: bottom left;
-  background-repeat: repeat-x;
 }
 #mw-head-base {
   margin-top: -5em;
   margin-left: 10em;
   height: 5em;
-  /* @embed */
-  background-image: url(images/border.png);
-  background-position: bottom left;
-  background-repeat: repeat-x;
 }
 div#mw-head {
-  position: absolute;
-  top: 0;
-  right: 0;
   width: 100%;
 }
 div#mw-head h5 {
@@ -55,9 +35,6 @@ div.emptyPortlet {
 }
 /* Personal */
 #p-personal {
-  position: absolute;
-  top: 0.33em;
-  right: 0.75em;
 }
 #p-personal h5 {
   display: none;
@@ -81,9 +58,6 @@ div.emptyPortlet {
 }
 /* Navigation Containers */
 #left-navigation {
-  position: absolute;
-  left: 10em;
-  top: 2.5em;
 }
 #right-navigation {
   float: right;
@@ -99,13 +73,6 @@ div.vectorMenu h5 span {
 div.vectorTabs {
   float: left;
   height: 2.5em;
-}
-div.vectorTabs {
-  /* @embed */
-  background-image: url(images/tab-break.png);
-  background-position: bottom left;
-  background-repeat: no-repeat;
-  padding-left: 1px;
 }
 /* @noflip */
 div.vectorTabs ul {
@@ -129,10 +96,6 @@ div.vectorTabs ul li {
   margin: 0;
   padding: 0;
   background-color: #f3f3f3;
-  /* @embed */
-  background-image: url(images/tab-normal-fade.png);
-  background-position: bottom left;
-  background-repeat: repeat-x;
   white-space: nowrap;
 }
 /* IGNORED BY IE6 */
@@ -140,8 +103,6 @@ div.vectorTabs ul > li {
   display: block;
 }
 div.vectorTabs li.selected {
-  /* @embed */
-  background-image: url(images/tab-current-fade.png);
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 div.vectorTabs li a {
@@ -174,10 +135,6 @@ div.vectorTabs span > a {
 }
 div.vectorTabs span {
   display: inline-block;
-  /* @embed */
-  background-image: url(images/tab-break.png);
-  background-position: bottom right;
-  background-repeat: no-repeat;
 }
 div.vectorTabs li.selected a,
 div.vectorTabs li.selected a:visited{
@@ -193,24 +150,14 @@ div.vectorTabs li.new a:visited{
 div.vectorMenu {
   direction: ltr;
   float: left;
-  /* @embed */
-  background-image: url(images/arrow-down-icon.png);
-  background-position: 100% 60%;
-  background-repeat: no-repeat;
   cursor: pointer;
 }
 div.vectorMenuFocus {
-  /* @embed */
-  background-image: url(images/arrow-down-focus-icon.png);
-  background-position: 100% 60%;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
 div#mw-head div.vectorMenu h5 {
   float: left;
-  /* @embed */
-  background-image: url(images/tab-break.png);
-  background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
 div#mw-head div.vectorMenu h5 {
@@ -237,9 +184,6 @@ div.vectorMenu h5 a {
   width: 24px;
   height: 2.5em;
   text-decoration: none;
-  /* @embed */
-  background-image: url(images/tab-break.png);
-  background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
 div.vectorMenu h5 a {
@@ -261,7 +205,6 @@ div.vectorMenu div.menuForceShow {
   display: block;
 }
 div.vectorMenu ul {
-  position: absolute;
   background-color: white;
   border: solid 1px silver;
   border-top-width: 0;
@@ -335,10 +278,6 @@ div#simpleSearch {
   border: solid 1px #aaa;
   color: black;
   background-color: white;
-  /* @embed */
-  background-image: url(images/search-fade.png);
-  background-position: top left;
-  background-repeat: repeat-x;
 }
 div#simpleSearch label {
   /*
@@ -363,9 +302,6 @@ div#simpleSearch input::-webkit-input-placeholder {
   color: #999;
 }
 div#simpleSearch input#searchInput {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 90%;
   margin: 0;
   padding: 0;
@@ -410,11 +346,8 @@ div#simpleSearch button#searchButton > img {
 }
 /* Panel */
 div#mw-panel {
-  position: absolute;
-  top: 160px;
   padding-top: 1em;
   width: 10em;
-  left: 0;
 }
 div#mw-panel div.portal {
   padding-bottom: 1.5em;
@@ -434,10 +367,6 @@ div#mw-panel div.portal div.body {
   margin: 0;
   padding-top: 0.5em;
   margin-left: 1.25em;
-  /* @embed */
-  background-image: url(images/portal-break.png);
-  background-repeat: no-repeat;
-  background-position: top left;
 }
 div#mw-panel div.portal div.body ul {
   list-style: none;
@@ -465,11 +394,6 @@ div#footer {
   margin-left: 10em;
   margin-top: 0;
   padding: 0.75em;
-  /* @embed */
-  background-image: url(images/border.png);
-  background-position: top left;
-  background-repeat: repeat-x;
-  direction: ltr;
 }
 div#footer ul {
   list-style: none;
@@ -507,22 +431,6 @@ div#footer #footer-places li {
   margin-right: 1em;
   line-height: 2em;
 }
-/* Logo */
-#p-logo {
-  position: absolute;
-  top: -160px;
-  left: 0;
-  width: 10em;
-  height: 160px;
-}
-#p-logo a {
-  display: block;
-  width: 10em;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  text-decoration: none;
-}
 
 /*
  *
@@ -539,10 +447,6 @@ div#footer #footer-places li {
   clear: both;
   margin: 0 !important;
   padding: 0 !important;
-  /* @embed */
-  background-image: url(images/preferences-break.png);
-  background-position: bottom left;
-  background-repeat: no-repeat;
 }
   #preftoc li {
     /* Tab */
@@ -554,10 +458,6 @@ div#footer #footer-places li {
     white-space: nowrap;
     list-style-type: none;
     list-style-image: none;
-    /* @embed */
-    background-image: url(images/preferences-break.png);
-    background-position: bottom right;
-    background-repeat: no-repeat;
   }
   /* Sadly, IE6 won't understand this */
   #preftoc li:first-child {
@@ -578,10 +478,6 @@ div#footer #footer-places li {
     text-decoration: underline;
   }
   #preftoc li.selected a {
-    /* @embed */
-    background-image: url(images/preferences-fade.png);
-    background-position: bottom;
-    background-repeat: repeat-x;
     color: #333;
     text-decoration: none;
   }
@@ -593,8 +489,6 @@ div#footer #footer-places li {
   clear: both;
   border: solid 1px #ccc;
   background-color: #f9f9f9;
-  /* @embed */
-  background-image: url(images/preferences-base.png);
 }
 #preferences fieldset {
   border: none;
@@ -655,38 +549,26 @@ pre, .mw-code {
 }
 div#content a.external,
 div#content a.external[href ^="gopher://"] {
-  /* @embed */
-  background: url(images/external-link-ltr-icon.png) center right no-repeat;
   padding-right: 13px;
 }
 div#content a.external[href ^="https://"],
 .link-https {
-  /* @embed */
-  background: url(images/lock-icon.png) center right no-repeat;
   padding-right: 13px;
 }
 div#content a.external[href ^="mailto:"],
 .link-mailto {
-  /* @embed */
-  background: url(images/mail-icon.png) center right no-repeat;
   padding-right: 13px;
 }
 div#content a.external[href ^="news:"] {
-  /* @embed */
-  background: url(images/news-icon.png) center right no-repeat;
   padding-right: 13px;
 }
 div#content a.external[href ^="ftp://"],
 .link-ftp {
-  /* @embed */
-  background: url(images/file-icon.png) center right no-repeat;
   padding-right: 13px;
 }
 div#content a.external[href ^="irc://"],
 div#content a.external[href ^="ircs://"],
 .link-irc {
-  /* @embed */
-  background: url(images/talk-icon.png) center right no-repeat;
   padding-right: 13px;
 }
 div#content a.external[href $=".ogg"], div#content a.external[href $=".OGG"],
@@ -696,8 +578,6 @@ div#content a.external[href $=".mp3"], div#content a.external[href $=".MP3"],
 div#content a.external[href $=".wav"], div#content a.external[href $=".WAV"],
 div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"],
 .link-audio {
-  /* @embed */
-  background: url(images/audio-icon.png) center right no-repeat;
   padding-right: 13px;
 }
 div#content a.external[href $=".ogm"], div#content a.external[href $=".OGM"],
@@ -705,16 +585,12 @@ div#content a.external[href $=".avi"], div#content a.external[href $=".AVI"],
 div#content a.external[href $=".mpeg"], div#content a.external[href $=".MPEG"],
 div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
 .link-video {
-  /* @embed */
-  background: url(images/video-icon.png) center right no-repeat;
   padding-right: 13px;
 }
 div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"],
 div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"],
 div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 .link-document {
-  /* @embed */
-  background: url(images/document-icon.png) center right no-repeat;
   padding-right: 13px;
 }
 
@@ -764,8 +640,6 @@ div#bodyContent {
   margin-top: -0.8em !ie;
   height: 0;
   overflow: hidden;
-  /* @embed */
-  background-image: url(images/watch-icons.png);
 }
 #ca-unwatch.icon a {
   background-position: -43px 60%;
@@ -783,21 +657,19 @@ div#bodyContent {
 }
 #ca-unwatch.icon a.loading,
 #ca-watch.icon a.loading {
-  /* @embed */
-  background-image: url(images/watch-icon-loading.gif);
-  background-position: 5px 60%;
 }
 #ca-unwatch.icon a span,
 #ca-watch.icon a span {
   display: none;
 }
 div.vectorTabs ul {
-  /* @embed */
-  background-image: url(images/tab-break.png);
-  background-position: right bottom;
-  background-repeat: no-repeat;
 }
 
 .printfooter {
   display: none;
 }
+
+.service-title {
+  /*line-height: 1.4;*/
+}
+
