@@ -27,12 +27,12 @@ class SkinMalmo extends SkinTemplate {
        <link href="' . ASSET_HOST . '/malmo.css" rel="stylesheet" type="text/css"/>
        <!--[if lte IE 9]><link href="' . ASSET_HOST . '/legacy/ie9.css" rel="stylesheet" type="text/css"/><![endif]-->
        <!--[if lte IE 7]><link href="' . ASSET_HOST . '/legacy/ie7.css" rel="stylesheet" type="text/css"/><![endif]-->
-       <link href="' . $wgLocalStylePath . '/malmo/screen.css" rel="stylesheet" type="text/css"/>
-       <link href="' . $wgLocalStylePath . '/malmo/malmo.css" rel="stylesheet" type="text/css"/>'
+       <link href="' . $wgLocalStylePath . '/malmo/stylesheets/screen.css" rel="stylesheet" type="text/css"/>
+       <link href="' . $wgLocalStylePath . '/malmo/stylesheets/malmo.css" rel="stylesheet" type="text/css"/>'
     );
-    $out->addStyle('malmo/commonElements.css', 'screen');
-    $out->addStyle('malmo/commonContent.css', 'screen');
-    $out->addStyle('malmo/commonInterface.css', 'screen');
+    $out->addStyle('malmo/stylesheets/commonElements.css', 'screen');
+    $out->addStyle('malmo/stylesheets/commonContent.css', 'screen');
+    $out->addStyle('malmo/stylesheets/commonInterface.css', 'screen');
 
 		$out->addModuleScripts( 'skins.malmo' );
 	}
@@ -119,123 +119,21 @@ class MalmoTemplate extends BaseTemplate {
 		$this->data['action_urls'] = $nav['actions'];
 		$this->data['variant_urls'] = $nav['variants'];
 
-		// Output HTML Page
 		$this->html( 'headelement' );
 ?>
     <div class="service-title"><a href="<?php echo $this->data['nav_urls']['mainpage']['href'] ?>">Wiki</a></div>
 
-		<div id="mw-head-base" class="noprint"></div>
-
-    <!-- header -->
-    <div id="mw-head" class="noprint">
-      <div id="right-navigation">
-        <?php $this->renderNavigation( array( 'VIEWS', 'ACTIONS', 'SEARCH' ) ); ?>
-      </div>
-    </div>
-    <!-- /header -->
-
-		<!-- content -->
-		<div id="content" class="mw-body body-copy">
-			<a id="top"></a>
-			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
-			<?php if ( $this->data['sitenotice'] ): ?>
-			<!-- sitenotice -->
-			<div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
-			<!-- /sitenotice -->
-			<?php endif; ?>
-			<!-- firstHeading -->
-			<h1 id="firstHeading" class="firstHeading"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
-			<!-- /firstHeading -->
-			<!-- bodyContent -->
-			<div id="bodyContent">
-				<?php if ( $this->data['isarticle'] ): ?>
-				<?php endif; ?>
-				<!-- subtitle -->
-				<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
-				<!-- /subtitle -->
-				<?php if ( $this->data['undelete'] ): ?>
-				<!-- undelete -->
-				<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
-				<!-- /undelete -->
-				<?php endif; ?>
-				<?php if( $this->data['newtalk'] ): ?>
-				<!-- newtalk -->
-				<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
-				<!-- /newtalk -->
-				<?php endif; ?>
-				<!-- bodycontent -->
-				<?php $this->html( 'bodycontent' ) ?>
-				<!-- /bodycontent -->
-				<?php if ( $this->data['printfooter'] ): ?>
-				<!-- printfooter -->
-				<div class="printfooter">
-				<?php $this->html( 'printfooter' ); ?>
-				</div>
-				<!-- /printfooter -->
-				<?php endif; ?>
-
-				<?php if ( trim(strip_tags($this->data['catlinks'])) ): ?>
-				<!-- catlinks -->
-				<?php $this->html( 'catlinks' ); ?>
-				<!-- /catlinks -->
-				<?php endif; ?>
-				<?php if ( $this->data['dataAfterContent'] ): ?>
-				<!-- dataAfterContent -->
-				<?php $this->html( 'dataAfterContent' ); ?>
-				<!-- /dataAfterContent -->
-				<?php endif; ?>
-				<div class="visualClear"></div>
-				<!-- debughtml -->
-				<?php $this->html( 'debughtml' ); ?>
-				<!-- /debughtml -->
-			</div>
-			<!-- /bodyContent -->
-
-          <div id="footer"<?php $this->html( 'userlangattributes' ) ?>>
-            <?php foreach( $this->getFooterLinks() as $category => $links ): ?>
-              <ul id="footer-<?php echo $category ?>">
-                <?php foreach( $links as $link ): ?>
-                  <li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
-                <?php endforeach; ?>
-                <li><a href="<?php echo $this->data['nav_urls']['whatlinkshere']['href'] ?>">Länkar till sidan</a></li>
-              </ul>
-            <?php endforeach; ?>
-            <div style="clear:both"></div>
-          </div>
-
-
-		</div>
-		<!-- /content -->
+    <?php include("malmo/views/page-menu.php"); ?>
+    <?php include("malmo/views/content.php"); ?>
 		<?php $this->printTrail(); ?>
+    <?php include("malmo/views/footer.php"); ?>
 
-    <footer class="bigfoot">
-      <nav>
-        <ul class="list-1">
-          <li><a href="<?php echo $this->data['nav_urls']['mainpage']['href'] ?>">Huvudsida</a></li>
-          <li><a href="<?php echo $this->data['nav_urls']['upload']['href'] ?>">Ladda upp fil</a></li>
-          <li><a href="<?php echo $this->data['nav_urls']['specialpages']['href'] ?>">Specialsidor</a></li>
-          <li><a href="<?php echo $this->data['nav_urls']['recentchangeslinked']['href'] ?>">Senaste ändringar</a></li>
-        </ul>
-
-        <ul class="list-2">
-          <?php foreach( $this->getPersonalTools() as $key => $item ) { ?>
-            <?php echo $this->makeListItem( $key, $item ); ?>
-          <?php } ?>
-        </ul>
-
-        <ul class="list-3">
-          <li><a href="<?php echo $this->navigationHref('n-help'); ?>">Hjälp</a></li>
-        </ul>
-
-      </nav>
-    </footer>
 
     <script src="<?php echo ASSET_HOST ?>/malmo.js"></script>
 	</body>
 </html>
 <?php
 	}
-
   // Get a sidebar navigation link by id
   function navigationHref($id) {
     foreach ($this->data['sidebar']['navigation'] as $item) {
@@ -245,128 +143,4 @@ class MalmoTemplate extends BaseTemplate {
     }
     return false;
   }
-
-	/**
-	 * Render one or more navigations elements by name, automatically reveresed
-	 * when UI is in RTL mode
-	 *
-	 * @param $elements array
-	 */
-	protected function renderNavigation( $elements ) {
-		global $wgVectorUseSimpleSearch;
-
-		// If only one element was given, wrap it in an array, allowing more
-		// flexible arguments
-		if ( !is_array( $elements ) ) {
-			$elements = array( $elements );
-		// If there's a series of elements, reverse them when in RTL mode
-		} elseif ( $this->data['rtl'] ) {
-			$elements = array_reverse( $elements );
-		}
-		// Render elements
-		foreach ( $elements as $name => $element ) {
-			echo "\n<!-- {$name} -->\n";
-			switch ( $element ) {
-				case 'NAMESPACES':
-?>
-<div id="p-namespaces" class="vectorTabs<?php if ( count( $this->data['namespace_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
-	<h5><?php $this->msg( 'namespaces' ) ?></h5>
-	<ul<?php $this->html( 'userlangattributes' ) ?>>
-		<?php foreach ( $this->data['namespace_urls'] as $link ): ?>
-			<li <?php echo $link['attributes'] ?>><span><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></span></li>
-		<?php endforeach; ?>
-	</ul>
-</div>
-<?php
-				break;
-				case 'VARIANTS':
-?>
-<div id="p-variants" class="vectorMenu<?php if ( count( $this->data['variant_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
-	<h4>
-	<?php foreach ( $this->data['variant_urls'] as $link ): ?>
-		<?php if ( stripos( $link['attributes'], 'selected' ) !== false ): ?>
-			<?php echo htmlspecialchars( $link['text'] ) ?>
-		<?php endif; ?>
-	<?php endforeach; ?>
-	</h4>
-	<h5><span><?php $this->msg( 'variants' ) ?></span><a href="#"></a></h5>
-	<div class="menu">
-		<ul>
-			<?php foreach ( $this->data['variant_urls'] as $link ): ?>
-				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" lang="<?php echo htmlspecialchars( $link['lang'] ) ?>" hreflang="<?php echo htmlspecialchars( $link['hreflang'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-			<?php endforeach; ?>
-		</ul>
-	</div>
-</div>
-<?php
-				break;
-				case 'VIEWS':
-?>
-<div id="p-views" class="vectorTabs<?php if ( count( $this->data['view_urls'] ) == 0 ) { echo ' emptyPortlet'; } ?>">
-	<h5><?php $this->msg('views') ?></h5>
-	<ul<?php $this->html('userlangattributes') ?>>
-		<?php foreach ( $this->data['view_urls'] as $link ): ?>
-			<li<?php echo $link['attributes'] ?>><span><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php
-				// $link['text'] can be undefined - bug 27764
-				if ( array_key_exists( 'text', $link ) ) {
-					echo array_key_exists( 'img', $link ) ?  '<img src="' . $link['img'] . '" alt="' . $link['text'] . '" />' : htmlspecialchars( $link['text'] );
-				}
-				?></a></span></li>
-		<?php endforeach; ?>
-
-    <?php if (isset($this->data['content_navigation']['namespaces']['talk'])): ?>
-      <li><span><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['talk']['text'] ?></span></a></li>
-    <?php endif; ?>
-    <?php if (isset($this->data['content_navigation']['namespaces']['help_talk'])): ?>
-      <li><span><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['help_talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['help_talk']['text'] ?></span></a></li>
-    <?php endif; ?>
-	</ul>
-</div>
-<?php
-				break;
-				case 'ACTIONS':
-?>
-<div id="p-cactions" class="vectorMenu<?php if ( count( $this->data['action_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
-	<h5><span><?php $this->msg( 'actions' ) ?></span><a href="#"></a></h5>
-	<div class="menu">
-		<ul<?php $this->html( 'userlangattributes' ) ?>>
-			<?php foreach ( $this->data['action_urls'] as $link ): ?>
-				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-			<?php endforeach; ?>
-		</ul>
-	</div>
-</div>
-<?php
-  break;
-  case 'SEARCH':
-?>
-<div id="p-search">
-	<h5<?php $this->html( 'userlangattributes' ) ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
-	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
-		<?php if ( $wgVectorUseSimpleSearch && $this->getSkin()->getUser()->getOption( 'vector-simplesearch' ) ): ?>
-		<div id="simpleSearch">
-			<?php if ( $this->data['rtl'] ): ?>
-			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-rtl.png' ), 'width' => '12', 'height' => '13' ) ); ?>
-			<?php endif; ?>
-			<?php echo $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'text', "placeholder" => "Sök wikisida" ) ); ?>
-			<?php if ( !$this->data['rtl'] ): ?>
-			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-ltr.png' ), 'width' => '12', 'height' => '13' ) ); ?>
-			<?php endif; ?>
-		<?php else: ?>
-		<div>
-			<?php echo $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'text' ) ); ?>
-			<?php echo $this->makeSearchButton( 'go', array( 'id' => 'searchGoButton', 'class' => 'searchButton' ) ); ?>
-			<?php echo $this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton' ) ); ?>
-		<?php endif; ?>
-			<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
-		</div>
-	</form>
-</div>
-<?php
-
-				break;
-			}
-			echo "\n<!-- /{$name} -->\n";
-		}
-	}
 }

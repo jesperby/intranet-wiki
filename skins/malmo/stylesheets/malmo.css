@@ -1,5 +1,5 @@
 body  {
-  margin-top: 3em !important;
+  margin: 2.6em 0 0 0;
 }
 header a:hover {
   text-decoration: none;
@@ -10,19 +10,6 @@ header a:hover {
 }
 #content {
   margin-top: 1em;
-}
-
-div#mw-head {
-  top: 3em;
-}
-
-#mw-page-base a,
-#mw-head-base a,
-#content a,
-#mw-head a,
-#mw-panel a,
-#footer a {
-  color: #0060b0 !important;
 }
 
 #editform textarea {
@@ -41,21 +28,10 @@ a#mw-editform-cancel {
   color: black !important;
 }
 
-div#simpleSearch button#searchButton {
-  padding: 0;
-}
-
 #toc, .toc, .mw-warning {
   font-size: 1em;
 }
 
 .editsection {
   font-size: 0.6em !important;
-}
-
-#footer-info-copyright,
-#footer-info-viewcount,
-#footer-places,
-#n-randompage {
-  display: none;
 }
