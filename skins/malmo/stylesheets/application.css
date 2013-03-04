@@ -369,12 +369,25 @@ header a:hover {
   display: none;
 }
 
+.editCheckboxes {
+  margin: 0 0 1em;
+}
+.editCheckboxes label {
+  display: inline;
+  margin: 1em 1em 1em 0;
+}
+
 .editButtons {
   font-size: 0.8125em;
 }
 
-a#mw-editform-cancel {
+.cancelLink #mw-editform-cancel {
   color: black !important;
+}
+
+.editHelp {
+  display: block;
+  margin-top: 1em;
 }
 
 #toc, .toc, .mw-warning {

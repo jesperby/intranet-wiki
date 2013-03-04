@@ -8,7 +8,7 @@ class MalmoTemplate extends BaseTemplate {
    * Outputs the entire contents of the (X)HTML page
    */
   public function execute() {
-    global $wgVectorUseIconWatch;
+    global $wgVectorUseIconWatch, $wgLocalStylePath;
 
     // Build additional attributes for navigation urls
     $nav = $this->data['content_navigation'];
