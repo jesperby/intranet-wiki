@@ -119,15 +119,6 @@ class MalmoTemplate extends BaseTemplate {
 		$this->data['action_urls'] = $nav['actions'];
 		$this->data['variant_urls'] = $nav['variants'];
 
-		// Reverse horizontally rendered navigation elements
-		if ( $this->data['rtl'] ) {
-			$this->data['view_urls'] =
-				array_reverse( $this->data['view_urls'] );
-			$this->data['namespace_urls'] =
-				array_reverse( $this->data['namespace_urls'] );
-			$this->data['personal_urls'] =
-				array_reverse( $this->data['personal_urls'] );
-		}
 		// Output HTML Page
 		$this->html( 'headelement' );
 ?>
@@ -182,7 +173,8 @@ class MalmoTemplate extends BaseTemplate {
 				</div>
 				<!-- /printfooter -->
 				<?php endif; ?>
-				<?php if ( $this->data['catlinks'] ): ?>
+
+				<?php if ( trim(strip_tags($this->data['catlinks'])) ): ?>
 				<!-- catlinks -->
 				<?php $this->html( 'catlinks' ); ?>
 				<!-- /catlinks -->
@@ -198,21 +190,22 @@ class MalmoTemplate extends BaseTemplate {
 				<!-- /debughtml -->
 			</div>
 			<!-- /bodyContent -->
+
+          <div id="footer"<?php $this->html( 'userlangattributes' ) ?>>
+            <?php foreach( $this->getFooterLinks() as $category => $links ): ?>
+              <ul id="footer-<?php echo $category ?>">
+                <?php foreach( $links as $link ): ?>
+                  <li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
+                <?php endforeach; ?>
+                <li><a href="<?php echo $this->data['nav_urls']['whatlinkshere']['href'] ?>">Länkar till sidan</a></li>
+              </ul>
+            <?php endforeach; ?>
+            <div style="clear:both"></div>
+          </div>
+
+
 		</div>
 		<!-- /content -->
-		<!-- footer -->
-		<div id="footer"<?php $this->html( 'userlangattributes' ) ?>>
-			<?php foreach( $this->getFooterLinks() as $category => $links ): ?>
-				<ul id="footer-<?php echo $category ?>">
-					<?php foreach( $links as $link ): ?>
-						<li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
-					<?php endforeach; ?>
-          <li><a href="<?php echo $this->data['nav_urls']['whatlinkshere']['href'] ?>">Länkar till sidan</a></li>
-				</ul>
-			<?php endforeach; ?>
-			<div style="clear:both"></div>
-		</div>
-		<!-- /footer -->
 		<?php $this->printTrail(); ?>
 
     <footer class="bigfoot">
@@ -320,7 +313,13 @@ class MalmoTemplate extends BaseTemplate {
 				}
 				?></a></span></li>
 		<?php endforeach; ?>
-    <li><span><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['talk']['href'] ) ?>" "><?php echo $this->data['content_navigation']['namespaces']['talk']['text'] ?></span></a></li>
+
+    <?php if (isset($this->data['content_navigation']['namespaces']['talk'])): ?>
+      <li><span><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['talk']['text'] ?></span></a></li>
+    <?php endif; ?>
+    <?php if (isset($this->data['content_navigation']['namespaces']['help_talk'])): ?>
+      <li><span><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['help_talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['help_talk']['text'] ?></span></a></li>
+    <?php endif; ?>
 	</ul>
 </div>
 <?php
