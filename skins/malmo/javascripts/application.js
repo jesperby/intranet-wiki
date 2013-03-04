@@ -1,7 +1,3 @@
-/**
- * Malmo-specific scripts
- */
-
 jQuery( function ($) {
 	$( 'div.vectorMenu' ).each( function () {
 		var $el = $( this );

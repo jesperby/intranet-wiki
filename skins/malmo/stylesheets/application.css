@@ -82,34 +82,6 @@ div#footer ul li {
   color: #333;
   font-size: 0.8125em;
 }
-div#footer #footer-icons {
-  float: right;
-}
-/* @noflip */
-body.ltr div#footer #footer-places {
-  float: left;
-}
-div#footer #footer-info li {
-  line-height: 1.4em;
-}
-div#footer #footer-icons li {
-  float: left;
-  margin-left: 0.5em;
-  line-height: 2em;
-  text-align: right;
-}
-div#footer #footer-places li {
-  float: left;
-  margin-right: 1em;
-  line-height: 2em;
-}
-
-/*
- *
- * The following code is highly modified from monobook. It would be nice if the
- * preftoc id was more human readable like preferences-toc for instance,
- * howerver this would require backporting the other skins.
- */
 
 /* Preferences */
 #preftoc {
@@ -382,4 +354,39 @@ footer.bigfoot nav {
 
 #p-cactions {
   display: none;
+}
+
+header a:hover {
+  text-decoration: none;
+}
+
+#mw-head, .portal, .editsection, #footer {
+  font-family: 'OpenSans', 'Verdana', 'DejaVu Sans', 'Bitstream Vera Sans', sans-serif;
+}
+#content {
+  margin-top: 1em;
+}
+
+#editform textarea {
+  width: 100%;
+}
+
+#editpage-copywarn {
+  display: none;
+}
+
+.editButtons {
+  font-size: 0.8125em;
+}
+
+a#mw-editform-cancel {
+  color: black !important;
+}
+
+#toc, .toc, .mw-warning {
+  font-size: 1em;
+}
+
+.editsection {
+  font-size: 0.6em !important;
 }
