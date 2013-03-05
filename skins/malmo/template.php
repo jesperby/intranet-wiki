@@ -60,9 +60,8 @@ class MalmoTemplate extends BaseTemplate {
     <?php include("views/content.php"); ?>
     <?php $this->printTrail(); ?>
     <?php include("views/footer.php"); ?>
-
+    <script src="<?php echo ASSET_HOST ?>/malmo-no-jquery.js"></script>
     <script src="<?php echo $wgLocalStylePath . '/malmo/javascripts' ?>/application.js"></script>
-    <script src="<?php echo ASSET_HOST ?>/malmo.js"></script>
   </body>
 </html>
 <?php

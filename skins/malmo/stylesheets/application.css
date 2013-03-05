@@ -340,6 +340,10 @@ footer.bigfoot nav {
   margin-left: 1em;
 }
 
+#mw-head .icon-caret-down {
+  color: #777;
+}
+
 #p-views, #p-search {
   float: right;
 }

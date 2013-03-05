@@ -19,34 +19,34 @@
     </form>
   </div>
 
+  <?php if(!empty($this->data['namespace_urls']['main'])) { ?>
+    <div id="p-views" class="vectorTabs<?php if ( count( $this->data['view_urls'] ) == 0 ) { echo ' emptyPortlet'; } ?>">
+      <ul<?php $this->html('userlangattributes') ?>>
+      <li><a href="<?php echo $this->data['namespace_urls']['main']['href'] ?>"><?php echo $this->data['namespace_urls']['main']['text']?></a></li>
+        <?php foreach ( $this->data['view_urls'] as $link ): ?>
+          <?php if( $link['text'] == 'Visa' ) { continue; } ?>
+          <li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php
+            if ( array_key_exists( 'text', $link ) ) {
+              echo array_key_exists( 'img', $link ) ?  '<img src="' . $link['img'] . '" alt="' . $link['text'] . '" />' : htmlspecialchars( $link['text'] );
+            }
+            ?></a></li>
+        <?php endforeach; ?>
 
-  <div id="p-views" class="vectorTabs<?php if ( count( $this->data['view_urls'] ) == 0 ) { echo ' emptyPortlet'; } ?>">
-    <ul<?php $this->html('userlangattributes') ?>>
-    <li><a href="<?php echo $this->data['namespace_urls']['main']['href'] ?>"><?php echo $this->data['namespace_urls']['main']['text']?></a></li>
-      <?php foreach ( $this->data['view_urls'] as $link ): ?>
-        <?php if( $link['text'] == 'Visa' ) { continue; } ?>
-        <li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php
-          if ( array_key_exists( 'text', $link ) ) {
-            echo array_key_exists( 'img', $link ) ?  '<img src="' . $link['img'] . '" alt="' . $link['text'] . '" />' : htmlspecialchars( $link['text'] );
-          }
-          ?></a></li>
-      <?php endforeach; ?>
-
-      <?php if (isset($this->data['content_navigation']['namespaces']['talk'])): ?>
-        <li><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['talk']['text'] ?></a></li>
-      <?php endif; ?>
-      <?php if (isset($this->data['content_navigation']['namespaces']['help_talk'])): ?>
-        <li><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['help_talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['help_talk']['text'] ?></a></li>
-      <?php endif; ?>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">Åtgärder<span class="icon-caret-down"></span></a>
-        <menu aria-labelledby="actions-menu" class="dropdown-menu" role="menu">
-          <?php foreach ( $this->data['action_urls'] as $link ): ?>
-            <li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-          <?php endforeach; ?>
-        </menu>
-      </li>
-    </ul>
-  </div>
+        <?php if (isset($this->data['content_navigation']['namespaces']['talk'])): ?>
+          <li><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['talk']['text'] ?></a></li>
+        <?php endif; ?>
+        <?php if (isset($this->data['content_navigation']['namespaces']['help_talk'])): ?>
+          <li><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['help_talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['help_talk']['text'] ?></a></li>
+        <?php endif; ?>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">Åtgärder<span class="icon-caret-down"></span></a>
+          <menu aria-labelledby="actions-menu" class="dropdown-menu" role="menu">
+            <?php foreach ( $this->data['action_urls'] as $link ): ?>
+              <li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+            <?php endforeach; ?>
+          </menu>
+        </li>
+      </ul>
+    </div>
+    <?php } ?>
 </div>
-

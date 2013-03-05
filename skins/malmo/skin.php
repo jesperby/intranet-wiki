@@ -28,6 +28,8 @@ class SkinMalmo extends SkinTemplate {
     $out->addStyle('malmo/stylesheets/commonElements.css', 'screen');
     $out->addStyle('malmo/stylesheets/commonContent.css', 'screen');
     $out->addStyle('malmo/stylesheets/commonInterface.css', 'screen');
+
+    $out->addModuleScripts( 'skins.malmo' );
   }
 
   /**
