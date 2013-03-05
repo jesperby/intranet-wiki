@@ -5,8 +5,8 @@ body  {
   margin: 2.6em 0 0 0 !important;
 }
 
-div#content a,
-div#mw-head a {
+#content a,
+#mw-head #p-views > ul > li > a {
   color: #0060b0 !important;
 }
 
@@ -330,7 +330,11 @@ footer.bigfoot nav {
   padding: 0 1em;
   border-bottom: 1px solid #ccc;
 }
-#mw-head li {
+#mw-head #p-views > ul > li {
+  display: inline;
+  margin-left: 1em;
+}
+#mw-head #p-views > ul > li > a {
   font-size: .8125em;
   display: inline;
   margin-left: 1em;
@@ -345,16 +349,20 @@ footer.bigfoot nav {
 #p-search h5 {
   display: none;
 }
-
 #p-cactions {
-  display: none;
+  float: right;
 }
+
+#p-cactions h5 {
+  display: inline;
+}
+
 
 header a:hover {
   text-decoration: none;
 }
 
-#mw-head, .portal, .editsection, #footer {
+#p-views, .portal, .editsection, #footer {
   font-family: 'OpenSans', 'Verdana', 'DejaVu Sans', 'Bitstream Vera Sans', sans-serif;
 }
 #content {
