@@ -10,11 +10,12 @@ body  {
   color: #0060b0 !important;
 }
 
-/* Framework */
-/* Content */
 div#content {
   margin: 0 auto;
   padding: 1em;
+  max-width: 60em;
+}
+body.ns-subject div#content {
   max-width: 40em;
 }
 
@@ -304,7 +305,7 @@ div.vectorTabs ul {
 }
 
 .service-title {
-  /*line-height: 1.4;*/
+  margin-bottom: .7em;
 }
 
 footer.bigfoot nav {
@@ -409,3 +410,14 @@ header a:hover {
 .editsection {
   font-size: 0.6em !important;
 }
+
+.mw-input label {
+  display: inline;
+}
+
+table#mw-htmlform-info th,
+table#mw-htmlform-info td,
+table#mw-htmlform-info td label {
+  font-size: 13px !important;
+}
+
