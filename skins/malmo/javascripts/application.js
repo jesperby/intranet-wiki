@@ -16,6 +16,10 @@ jQuery( function ($) {
 			} );
 	} );
 
+  // Hack to style some buttons
   $("#wpSave").addClass("btn btn-primary");
   $("#wpPreview, #wpDiff, #mw-editform-cancel").addClass("btn");
+
+  // Add a wrapper block around tables to make them responsive
+  $("table").wrap('<div class="table-wrapper"/>');;
 });
