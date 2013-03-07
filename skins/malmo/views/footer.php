@@ -10,16 +10,9 @@
     <ul class="list-2">
       <?php
         $tools = $this->getPersonalTools();
-        // Is user logged in?
-        if (array_key_exists( "userpage", $tools )) {
-          foreach( $tools as $key => $item ) {
-            echo $this->makeListItem( $key, $item );
-          }
-        } else { ?>
-        <li>
-          <a href="<?php echo $tools['anonlogin']['links'][0]['href'] ?>"><?php echo $tools['anonlogin']['links'][0]['text'] ?></a>
-        </li>
-      <?php } ?>
+        foreach( $tools as $key => $item ) {
+          echo $this->makeListItem( $key, $item );
+        } ?>
     </ul>
 
     <ul class="list-3">

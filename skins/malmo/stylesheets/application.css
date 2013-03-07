@@ -308,8 +308,12 @@ div.vectorTabs ul {
   margin-bottom: .7em;
 }
 
+#content {
+  min-height: 30em;
+}
+
 footer.bigfoot nav {
-    max-width: 40em;
+  max-width: 40em;
 }
 
 .clearfix {
@@ -367,7 +371,7 @@ header a:hover {
   text-decoration: none;
 }
 
-#p-views, .portal, .editsection, #footer {
+#p-views, .portal, .editsection, #footer, #catlinks {
   font-family: 'OpenSans', 'Verdana', 'DejaVu Sans', 'Bitstream Vera Sans', sans-serif;
 }
 #content {
@@ -445,6 +449,23 @@ table#mw-htmlform-info td label {
 .mw-specialpages-table th,
 .mw-specialpages-table td {
   border: none;
+}
+
+#catlinks {
+  font-size: 0.8125em;
+}
+
+.image, .thumbinner {
+  max-width: 100% !important;
+}
+.image img, .thumbinner image.thumbimage {
+  max-width: 100% !important;
+  height: auto;
+}
+
+pre, .mw-code {
+  overflow: scroll;
+  max-width: 90% !important;
 }
 
 @media ( max-width: 32em ) {
