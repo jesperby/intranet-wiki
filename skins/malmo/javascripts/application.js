@@ -21,5 +21,10 @@ jQuery( function ($) {
   $("#wpPreview, #wpDiff, #mw-editform-cancel, .mw-prefs-buttons a").addClass("btn");
 
   // Add a wrapper block around tables to make them responsive
-  $("table").wrap('<div class="table-wrapper"/>');;
+  $("body.ns-subject table").wrap('<div class="table-wrapper"/>');
+
+  // MediaWiki core sets the placeholder to "Sök", override it
+  setTimeout(function() {
+    $("#searchInput").attr('placeholder', 'Gå till wikisida');
+  }, 100);
 });

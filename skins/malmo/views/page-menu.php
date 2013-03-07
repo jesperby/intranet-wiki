@@ -6,7 +6,7 @@
     <form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
       <?php if ( $wgVectorUseSimpleSearch && $this->getSkin()->getUser()->getOption( 'vector-simplesearch' ) ): ?>
       <div id="simpleSearch" class="input-append">
-        <input name="search" title="Sök på Kominwiki [f]" accesskey="f" id="searchInput" type="text" placeholder="Sök wikisida"/>
+        <input name="search" title="Sök på Kominwiki [f]" accesskey="f" id="searchInput" type="text"/>
         <?php echo $this->makeSearchButton( 'image', array( 'class' => 'btn', 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-ltr.png' ) ) ); ?>
       <?php else: ?>
       <div>
@@ -33,7 +33,7 @@
         <?php endforeach; ?>
 
         <?php if (isset($this->data['content_navigation']['namespaces']['talk'])): ?>
-          <li><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['talk']['text'] ?></a></li>
+          <li class="talk"><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['talk']['text'] ?></a></li>
         <?php endif; ?>
         <?php if (isset($this->data['content_navigation']['namespaces']['help_talk'])): ?>
           <li><a href="<?php echo htmlspecialchars( $this->data['content_navigation']['namespaces']['help_talk']['href'] ) ?>"><?php echo $this->data['content_navigation']['namespaces']['help_talk']['text'] ?></a></li>
