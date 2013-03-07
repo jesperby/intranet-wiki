@@ -54,6 +54,6 @@ class SkinMalmo extends SkinTemplate {
     } else {
       $bodyAttrs['class'] = implode( ' ', static::$bodyClasses );
     }
-    $bodyAttrs['class'] .= ' ' . ENV;
+    $bodyAttrs['class'] .= ' malmo-form ' . ENV;
   }
 }
