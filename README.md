@@ -1,10 +1,10 @@
-Intranet Wiki Skin
+Intranet Wiki
 =============
-MediaWiki skin for intranet wiki at Malmö stad. Forked from the Wikipedia Vector skin.
+MediaWiki skin for the intranet wiki at Malmö stad. Forked from the Wikipedia Vector skin.
 
-The skin are using Malmö stads’s intranet global assets, see the repo [intranet-assets](https://github.com/malmostad/intranet-assets).
+The skin is using Malmö stads’s intranet global assets, see the repo [intranet-assets](https://github.com/malmostad/intranet-assets).
 
-For more information about the services, contact kominteamet@malmo.se.
+For more information about the intranet wiki, contact kominteamet@malmo.se.
 
 ## Dependencies
 * MediaWiki > 1.20.2
@@ -18,8 +18,6 @@ For more information about the services, contact kominteamet@malmo.se.
   * Gadgets
   * Nuke
   * ParserFunctions
-  * README
-  * Renameuser
   * Vector
   * WikiEditor
 
