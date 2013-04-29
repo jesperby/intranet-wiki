@@ -28,4 +28,4 @@ For more information about the intranet wiki, contact kominteamet@malmo.se.
   * `.htaccess-example` to `.htaccess`
 
 ## Licence
-TBD
+Released under GPL version 2.
