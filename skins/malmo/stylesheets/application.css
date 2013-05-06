@@ -185,6 +185,7 @@ pre, .mw-code {
 div#content a.external,
 div#content a.external[href ^="gopher://"] {
   padding-right: 13px;
+  background: url(../images/external-link-ltr-icon.png) center right no-repeat;
 }
 div#content a.external[href ^="https://"],
 .link-https {
