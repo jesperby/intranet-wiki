@@ -167,7 +167,7 @@ $wgLDAPProxyAgentPassword = array(
 $wgVectorUseSimpleSearch = true;
 
 define("ENV", "production");
-define("ASSET_HOST", "//webapps06.malmo.se/assets-3.0");
+define("ASSET_HOST", "//assets.malmo.se/internal/3.0");
 
 $wgFileExtensions = array(
   'png', 'gif', 'jpg', 'jpeg', 'xcf', 'mid', 'ogg', 'ogv', 'svg', 'djvu', 'tiff', 'tif', 'oga',
