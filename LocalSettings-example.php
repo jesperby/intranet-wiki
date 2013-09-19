@@ -142,6 +142,7 @@ require_once( "$IP/extensions/Vector/Vector.php" );
 require_once( "$IP/extensions/WikiEditor/WikiEditor.php" );
 require_once( "$IP/extensions/Cite/Cite.php");
 require_once( "$IP/extensions/LdapAuthentication/LdapAuthentication.php" );
+require_once( "$IP/extensions/MobileMeta.php");
 
 # Active Directory ADM auth
 $wgAuth = new LdapAuthenticationPlugin();
