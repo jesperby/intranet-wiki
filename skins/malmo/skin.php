@@ -21,7 +21,6 @@ class SkinMalmo extends SkinTemplate {
     $out->addHeadItem("assets-3.0",
       '<!--[if lte IE 8]><script src="' . ASSET_HOST . '/html5shiv-printshiv.js"></script><![endif]-->
        <link href="' . ASSET_HOST . '/malmo.css" rel="stylesheet" type="text/css"/>
-       <!--[if lte IE 9]><link href="' . ASSET_HOST . '/legacy/ie9.css" rel="stylesheet" type="text/css"/><![endif]-->
        <!--[if lte IE 7]><link href="' . ASSET_HOST . '/legacy/ie7.css" rel="stylesheet" type="text/css"/><![endif]-->
        <link href="' . $wgLocalStylePath . '/malmo/stylesheets/application.css" rel="stylesheet" type="text/css"/>'
     );
